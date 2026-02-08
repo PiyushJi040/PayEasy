@@ -1,8 +1,10 @@
 # 💰 PayEasy - Universal Payment Platform
 
+> 🎓 **Educational Project** - A demo payment application built for learning and showcasing React development skills.
+
 A modern, fully functional React-based payment application that supports all banks. Generate QR codes for receiving payments, scan QR codes to make payments, manage your cards, and explore investment opportunities - all in one place.
 
-![React](https://img.shields.io/badge/React-18.2.0-blue) ![Vite](https://img.shields.io/badge/Vite-5.0-purple) ![License](https://img.shields.io/badge/License-MIT-green)
+![React](https://img.shields.io/badge/React-18.2.0-blue) ![Vite](https://img.shields.io/badge/Vite-5.0-purple) ![License](https://img.shields.io/badge/License-MIT-green) ![Status](https://img.shields.io/badge/Status-Demo-orange)
 
 ## ✨ Features
 
@@ -113,19 +115,33 @@ PayEasy/
 - **LocalStorage** - Data persistence
 - **CSS3** - Modern styling with gradients and animations
 
-## 🔒 Security Note
+## 🎓 Educational Purpose
 
-⚠️ **Important**: This is a demo application for educational purposes.
+**This is a DEMO application created for:**
+- 📚 Learning React and modern web development
+- 🏆 College project fairs and exhibitions
+- 💼 Portfolio showcase
+- 🎯 Understanding payment system workflows
 
-In a production environment, you should:
-- ❌ Never store sensitive card information in localStorage
-- ✅ Use proper encryption for sensitive data
-- ✅ Implement backend API for secure transactions
-- ✅ Add authentication and authorization (JWT, OAuth)
-- ✅ Use HTTPS for all communications
-- ✅ Implement proper payment gateway integration (Razorpay, Stripe, etc.)
-- ✅ Add input validation and sanitization
-- ✅ Implement rate limiting and fraud detection
+**⚠️ NOT FOR PRODUCTION USE**
+
+This application simulates payment functionality for educational purposes only. It does NOT:
+- ❌ Connect to real bank accounts
+- ❌ Process actual money transactions
+- ❌ Store data securely (uses localStorage for demo)
+- ❌ Have real OTP or authentication
+
+## 🔒 For Real Payment Applications
+
+In a production environment, you would need:
+- ✅ Payment Gateway Integration (Razorpay, Stripe, PayU)
+- ✅ Backend API with proper security
+- ✅ PCI DSS Compliance for card data
+- ✅ RBI Payment Aggregator License (India)
+- ✅ OTP and 2FA authentication
+- ✅ Encryption for sensitive data
+- ✅ HTTPS and secure communications
+- ✅ Rate limiting and fraud detection
 
 ## 🤝 Contributing
 
