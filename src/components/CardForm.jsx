@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import OTPVerification from './OTPVerification';
 
 function CardForm({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -9,8 +10,10 @@ function CardForm({ onSubmit }) {
     bankName: '',
     accountNumber: '',
     ifscCode: '',
-    upiId: ''
+    upiId: '',
+    phoneNumber: ''
   });
+  const [showOTP, setShowOTP] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,6 +21,11 @@ function CardForm({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowOTP(true);
+  };
+
+  const handleOTPVerify = () => {
+    setShowOTP(false);
     onSubmit(formData);
   };
 
@@ -62,10 +70,19 @@ function CardForm({ onSubmit }) {
           <input name="accountNumber" placeholder="Account Number" onChange={handleChange} required />
           <input name="ifscCode" placeholder="IFSC Code" onChange={handleChange} required />
           <input name="upiId" placeholder="UPI ID (e.g., user@paytm)" onChange={handleChange} required />
+          <input name="phoneNumber" placeholder="Phone Number" maxLength="10" onChange={handleChange} required />
         </div>
 
         <button type="submit" className="submit-btn">Create Account</button>
       </form>
+
+      {showOTP && (
+        <OTPVerification
+          phoneNumber={formData.phoneNumber}
+          onVerify={handleOTPVerify}
+          onCancel={() => setShowOTP(false)}
+        />
+      )}
     </div>
   );
 }

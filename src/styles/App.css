@@ -689,6 +689,174 @@ body {
   box-shadow: 0 5px 20px rgba(255,255,255,0.3);
 }
 
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* OTP Modal */
+.otp-modal, .pin-modal {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  animation: slideUp 0.3s;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.otp-modal h2, .pin-modal h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.otp-modal p, .pin-modal p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.demo-otp {
+  background: #fff3cd;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #856404;
+  font-size: 1.1rem;
+}
+
+.otp-inputs, .pin-inputs {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.otp-box, .pin-box {
+  width: 50px;
+  height: 60px;
+  font-size: 2rem;
+  text-align: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.otp-box:focus, .pin-box:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+.error-message {
+  color: #e74c3c;
+  background: #fadbd8;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.otp-actions, .pin-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.verify-btn {
+  flex: 1;
+  padding: 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.verify-btn:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.cancel-btn {
+  flex: 1;
+  padding: 1rem;
+  background: white;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+.resend-text {
+  margin-top: 1.5rem;
+  color: #888;
+}
+
+.resend-link {
+  color: #667eea;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.resend-link:hover {
+  color: #5568d3;
+}
+
+.info-text {
+  margin-top: 1rem;
+  color: #667eea;
+  font-size: 0.9rem;
+}
+
+/* Security Info */
+.security-info {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-top: 2rem;
+  border: 2px solid #667eea;
+}
+
+.security-info p {
+  margin: 0.5rem 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.limit-note {
+  color: #e74c3c !important;
+  font-size: 0.9rem;
+  margin-top: 1rem !important;
+}
+
 @media (max-width: 768px) {
   .card-form-container,
   .dashboard-grid,

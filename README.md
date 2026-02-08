@@ -8,6 +8,13 @@ A modern, fully functional React-based payment application that supports all ban
 
 ## ✨ Features
 
+### 🔐 Enhanced Security (Demo)
+- **OTP Verification** - 6-digit OTP for registration
+- **PIN Authentication** - 4-digit PIN for payments
+- **Transaction Limits** - ₹10,000 per transaction, ₹50,000 daily limit
+- **Real-time Limit Tracking** - Monitor daily spending
+- **Secure Payment Flow** - Multi-layer verification
+
 ### 🎫 User Registration
 - Add credit/debit card information with live preview
 - Store bank account details securely

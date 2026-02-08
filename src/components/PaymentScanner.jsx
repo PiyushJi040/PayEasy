@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import PINVerification from './PINVerification';
 
 function PaymentScanner({ userData }) {
   const [amount, setAmount] = useState('');
   const [scannedData, setScannedData] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
   const [manualUPI, setManualUPI] = useState('');
+  const [showPIN, setShowPIN] = useState(false);
+  const [dailyLimit] = useState(50000);
+  const [dailySpent, setDailySpent] = useState(
+    parseFloat(localStorage.getItem('dailySpent') || '0')
+  );
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -25,14 +31,32 @@ function PaymentScanner({ userData }) {
       return;
     }
 
-    const upiData = scannedData || `upi://pay?pa=${manualUPI}&cu=INR`;
+    const paymentAmount = parseFloat(amount);
+
+    // Check daily limit
+    if (dailySpent + paymentAmount > dailyLimit) {
+      alert(`Daily limit exceeded! Remaining: ₹${dailyLimit - dailySpent}`);
+      return;
+    }
+
+    // Check per transaction limit
+    if (paymentAmount > 10000) {
+      alert('Per transaction limit is ₹10,000');
+      return;
+    }
+
+    setShowPIN(true);
+  };
+
+  const handlePINVerify = () => {
+    setShowPIN(false);
+    const paymentAmount = parseFloat(amount);
     
-    // Simulate payment processing
     setPaymentStatus('Processing payment...');
     setTimeout(() => {
       const transaction = {
         type: 'Payment Sent',
-        amount: -parseFloat(amount),
+        amount: -paymentAmount,
         date: new Date().toLocaleString(),
         to: manualUPI || 'Scanned Merchant'
       };
@@ -40,6 +64,10 @@ function PaymentScanner({ userData }) {
       const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
       transactions.unshift(transaction);
       localStorage.setItem('transactions', JSON.stringify(transactions));
+      
+      const newDailySpent = dailySpent + paymentAmount;
+      setDailySpent(newDailySpent);
+      localStorage.setItem('dailySpent', newDailySpent.toString());
       
       setPaymentStatus(`✅ Payment of ₹${amount} successful!`);
       setAmount('');
@@ -118,6 +146,21 @@ function PaymentScanner({ userData }) {
           <button key={amt} onClick={() => setAmount(amt.toString())}>₹{amt}</button>
         ))}
       </div>
+
+      <div className="security-info">
+        <p>🔒 Daily Limit: ₹{dailyLimit.toLocaleString()}</p>
+        <p>💰 Spent Today: ₹{dailySpent.toLocaleString()}</p>
+        <p>✅ Available: ₹{(dailyLimit - dailySpent).toLocaleString()}</p>
+        <p className="limit-note">Per transaction limit: ₹10,000</p>
+      </div>
+
+      {showPIN && (
+        <PINVerification
+          action={`Confirm payment of ₹${amount}`}
+          onVerify={handlePINVerify}
+          onCancel={() => setShowPIN(false)}
+        />
+      )}
     </div>
   );
 }
